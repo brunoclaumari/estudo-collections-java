@@ -55,6 +55,10 @@ public class Produto implements Comparable<Produto> {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
+	
+	public Double total() {
+		return this.preco * this.quantidade;
+	}
 
 	@Override
 	public String toString() {

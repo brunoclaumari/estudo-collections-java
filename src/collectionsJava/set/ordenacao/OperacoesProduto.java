@@ -1,41 +1,34 @@
 package collectionsJava.set.ordenacao;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
-import collectionsJava.list.Pessoa;
+import java.util.TreeSet;
 
 public class OperacoesProduto {
 	
 	private Set<Produto> produtos;
 
 	public OperacoesProduto() {		
-		this.produtos = new HashSet<Produto>();
+		this.produtos = new TreeSet<Produto>();
 	}
 
 	public Set<Produto> getProdutos() {
 		return produtos;
 	}
 	
-	public void adicionarProduto(long cod, String nome, double preco, int quantidade) {
-		this.produtos.add(new Produto(cod, nome, preco, quantidade));
+	public void adicionarProduto(long cod, String descricao, double preco, int quantidade) {
+		this.produtos.add(new Produto(cod, descricao, preco, quantidade));
 	}
 	
-	public void exibirProdutosPorNome() {
-		List<Produto> produtosPorNome = new ArrayList<Produto>(getProdutos());
-		
-		Collections.sort(produtosPorNome);
-		
-		 System.out.println(produtosPorNome);
+	public void exibirProdutosPorDescricao() {
+		Set<Produto> produtosPorDescricao = new TreeSet<Produto>(getProdutos());	
+				
+		System.out.println(produtosPorDescricao);
 	}
 	
 	public void exibirProdutosPorPreco() {
-		List<Produto> produtosPorPreco = new ArrayList<Produto>(getProdutos());
+		Set<Produto> produtosPorPreco = new TreeSet<Produto>(new ComparatorPorPreco());
 		
-		Collections.sort(produtosPorPreco, new ComparatorPorPreco());
+		produtosPorPreco.addAll(produtos);
 		
 		 System.out.println(produtosPorPreco);
 	}
